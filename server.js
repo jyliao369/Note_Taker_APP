@@ -60,20 +60,19 @@ const makeNote = (mainText, array) => {
 
 // This function allows the user to delete the note
 // the function deletes value based on the id number
-const trashnote = (id, array) => {
+app.trashnote = (id, array) => {
     for (let a = 0; a < array.length; a++) {
         let note = array[a];
         
-        if (note.id === id) {
-            array.splic(a, 1);
+        if (note.id == id) {
+            array.splice(a, 1);
             
             fs.writeFileSync(
                 path.join(__direname, './db/db.json'),
                 JSON.stringify(array, null, 2)
             );
-        }
-
-        break;
+            break;
+        } 
     }
 }
 
