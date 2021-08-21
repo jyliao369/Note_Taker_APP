@@ -30,9 +30,9 @@ app.get('/api/notes', (req, res) => {
 
 // This code allows the user to POST the data in the API notes
 app.post('/api/notes', (req, res) => {
-    const note = makeNote(req.body, database);
-    res.json(note);
-})
+        const note = makeNote(req.body, database);
+        res.json(note);
+    })
 
 const makeNote = (mainText, array) => {
     const note = mainText;
@@ -57,6 +57,11 @@ const makeNote = (mainText, array) => {
 
     return note;
 };
+
+app.delete('/api/notes/:id', (req, res) => {
+    deleteNote(req.param/id, database);
+})
+
 
 // This function allows the user to delete the note
 // the function deletes value based on the id number
