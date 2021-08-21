@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path')
-const database = require('./db/db.json');
+const dataBase = require('./db/db.json');
 const fs = require('fs');
 
 const PORT = process.env.PORT || 3001;
@@ -30,51 +30,50 @@ app.get('/api/notes', (req, res) => {
 
 // This code allows the user to POST the data in the API notes
 app.post('/api/notes', (req, res) => {
-        const note = makeNote(req.body, database);
-        res.json(note);
+        const newNote = createNote(req.body, dataBase);
+        res.json(newNote);
     })
 
-const makeNote = (mainText, array) => {
-    const note = mainText;
+const createNote = (body, notesArray) => {
+    const newNote = body;
 
-    if (!Array.isArray(array)) {
-        array = [];
-    }
-    if (array.length === 0) {
-       array.push(0); 
-    }
+    if (!Array.isArray(notesArray))
+        notesArray = [];
 
-    mainText.id = array.length;
-    array[0]++;
-    array.push(note);
+    if (array.length === 0)
+        notesArray.push(0); 
+
+    body.id = notesArray.length;
+    notesArray[0]++;
+    notesArray.push(newNote);
 
     // This function take the data that has been entered and push or write
     // the data in a JSON format into the db json file
     fs.writeFileSync(
         path.join(__direname, './db/db.json'),
-        JSON.stringify(array, null, 2)
+        JSON.stringify(notesArray, null, 2)
     );
-    return note;
+    return newNote;
 };
 
 app.delete('/api/notes/:id', (req, res) => {
-        trashnote(req.params.id, database);
+        deleteNote(req.params.id, dataBase);
         res.json(true);
     })
 
 
 // This function allows the user to delete the note
 // the function deletes value based on the id number
-const trashnote = (id, array) => {
-    for (let a = 0; a < array.length; a++) {
-        let note = array[a];
+const deleteNote = (id, notesArray) => {
+    for (let a = 0; a < notesArray.length; a++) {
+        let note = notesArray[a];
         
         if (note.id == id) {
-            array.splice(a, 1);
+            notesArray.splice(a, 1);
             
             fs.writeFileSync(
                 path.join(__direname, './db/db.json'),
-                JSON.stringify(array, null, 2)
+                JSON.stringify(notesArray, null, 2)
             );
             break;
         } 
