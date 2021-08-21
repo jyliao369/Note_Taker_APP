@@ -3,8 +3,8 @@ const path = require('path')
 const database = require('./db/db.json');
 const fs = require('fs');
 
-const app = express();
 const PORT = process.env.PORT || 3001;
+const app = express();
 
 // This sets up the express app thus allowing the data to be parsed
 app.use(express.json());
@@ -14,16 +14,13 @@ app.use(express.static('public'));
 // These are the various HTML routes. These include thinds like GET or POST
 // This section is the GET route for both the index and the notes.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__direname, './public/js/index.html'));
+    res.sendFile(path.join(__direname, './public/index.html'));
 });
 
 app.get('/notes', (req, res) => {
-    res.sendFile(path.json(__direname, '/public/js/notes.html'));
+    res.sendFile(path.json(__direname, '/public/notes.html'));
 });
 
-app.listen(PORT, () => {
-    console.log(`Example app listening at http://localhost:${PORT}`);
-});
 
 // This codes for the API route for the notes html
 // This code allows to GET the data in the API notes
