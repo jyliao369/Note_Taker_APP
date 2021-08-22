@@ -25,7 +25,7 @@ app.get('/notes', (req, res) =>
 // This codes for the API route for the notes html
 // This code allows to GET the data in the API notes
 app.get('/api/notes', (req, res) => {
-    res.json(database.slice(1));
+    res.json(dataBase.slice(1));
 });
 
 // This code allows the user to POST the data in the API notes
@@ -78,7 +78,7 @@ const deleteNote = (id, notesArray) => {
             break;
         } 
     }
-}
+};
 
 // Listening at http://localhost:3001
 app.listen(PORT, () => {
