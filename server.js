@@ -1,101 +1,36 @@
+// Importing express package
 const express = require('express');
-const path = require('path')
+
+const path = require('path');
+// Importaning the notes database file 'db.json'
 const db = require('./db/db.json');
-// const fs = require('fs');
-const notePath = require('./routes/notes');
+const routes = require('./routes/notes')
 
 const PORT = process.env.PORT || 3001;
-
+// Initialize our app variable by setting it to the value of express()
+// The app object denotes the Express application
 const app = express();
 
-// This sets up the express app thus allowing the data to be parsed
+// This setups the Express app allowing middleware software to handle and parse data
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+// Serve static content for the app from the “public” directory in the application directory:
 app.use(express.static('public'));
 
-// // These are the various HTML routes. These include thinds like GET or POST
-// // This section is the GET route for both the index and the notes.html
+
+// Routes HTTP GET requests to the specified path in this case 'index.html' in the public folder.
+// THIS ==> app.use([path,] callback [, callback...]).... IS THE BASIC SYNTAX.
 app.get('/', (req, res) =>
-    res.sendFile(path.join(__direname, '/public/index.html'))
+    res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
-app.get('/notes', (req, res) =>
-    res.sendFile(path.json(__direname, '/public/notes.html'))
+// Routes HTTP GET requests to the specified path in this case 'index.html' in the public folder.
+app.get('/notes' , (req, res) =>
+    res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-app.use('/api/notes', notePath)
+app.use('/api/notes' , routes)
 
-// // Listening at http://localhost:3001
-app.listen(PORT, () => {
-    console.log(`App is listening at http://localhost:${PORT}`);
-});
-
-
-
-
-
-
-
-
-
-
-
-// // This codes for the API route for the notes html
-// // This code allows to GET the data in the API notes
-// app.get('/api/notes', (req, res) => {
-//     res.json(dataBase.slice(1));
-// });
-
-// // This code allows the user to POST the data in the API notes
-// app.post('/api/notes', (req, res) => {
-//         const newNote = createNote(req.body, dataBase);
-//         res.json(newNote);
-//     })
-
-// const createNote = (body, notesArray) => {
-//     const newNote = body;
-
-//     if (!Array.isArray(notesArray))
-//         notesArray = [];
-
-//     if (array.length === 0)
-//         notesArray.push(0); 
-
-//     body.id = notesArray.length;
-//     notesArray[0]++;
-//     notesArray.push(newNote);
-
-//     // This function take the data that has been entered and push or write
-//     // the data in a JSON format into the db json file
-//     fs.writeFileSync(
-//         path.join(__direname, './db/db.json'),
-//         JSON.stringify(notesArray, null, 2)
-//     );
-//     return newNote;
-// };
-
-// app.delete('/api/notes/:id', (req, res) => {
-//         deleteNote(req.params.id, dataBase);
-//         res.json(true);
-//     })
-
-
-// // This function allows the user to delete the note
-// // the function deletes value based on the id number
-// const deleteNote = (id, notesArray) => {
-//     for (let a = 0; a < notesArray.length; a++) {
-//         let note = notesArray[a];
-        
-//         if (note.id == id) {
-//             notesArray.splice(a, 1);
-            
-//             fs.writeFileSync(
-//                 path.join(__direname, './db/db.json'),
-//                 JSON.stringify(notesArray, null, 2)
-//             );
-//             break;
-//         } 
-//     }
-// };
-
-
+app.listen(PORT, () =>
+  console.log(`App listening at http://localhost:${PORT} 🚀`)
+);

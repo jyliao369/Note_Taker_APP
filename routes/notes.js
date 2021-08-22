@@ -2,18 +2,23 @@ const express = require('express');
 const router = require('express').Router();
 const { readAndAppend, writeToFile, readFromFile } = require('../helpers/fsUtils');
 const uuid = require('../helpers/uuid');
-const fs = require('fs');
+const fs = require("fs");
 
-// This is the GET route for the submitted notes
+// This is the GET Route. This will help retrieve the data that is saved in the db.json
 router.get('/', (req, res) => {
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
 });
 
-// This is the POST route for submitting notes
+// POST Route for submitting notes in the db.json
+// IT will take a data entry and deconstruct it into two aspects: title and text
 router.post('/', (req, res) => {
-    // Destructuing the json
-    const { title, test, } = req.body;
+    const { title, text, } = req.body;
 
+    // This if statement checks to see if any value for title or text and if there is
+    // a new note is created based on the title and text input in the db.json
+    // and a random id is given
+
+    // Else nothing is done
     if (title && text) {
         const newNote = {
             title,
@@ -21,6 +26,8 @@ router.post('/', (req, res) => {
             note_id: uuid(),
         };
 
+        // This calls upon the function in the fsUtil.js to append and write the 
+        // data into the db.json
         readAndAppend(newNote, './db/db.json');
 
         const response = {
@@ -33,16 +40,16 @@ router.post('/', (req, res) => {
     }
 });
 
-// This function allows the user to delete any notes created based on id
-router.delete('/:id', (re, res) => {
+// This will delete any note saved
+router.delete('/:id', (req, res) => {
     const {id} = req.params
     const notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
 
     const noteIndex = notes.findIndex((note) => note.note_id === id);
     notes.splice(noteIndex, 1);
     writeToFile("./db/db.json", notes);
-
+  
     return res.send();
-});
+  });
 
 module.exports = router;
