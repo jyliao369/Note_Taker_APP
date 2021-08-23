@@ -12,8 +12,9 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // This setups the Express app allowing middleware software to handle and parse data
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Serve static content for the app from the “public” directory in the application directory:
 app.use(express.static('public'));
 

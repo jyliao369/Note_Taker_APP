@@ -69,7 +69,7 @@
 
 
 -- Application Running in Browser --
-![Application Running on Browser](./screenshots/screenshot1.jpg)
+![Application Running on Browser](./screenshots/screenshot2.jpg)
 
 
   ## Live Links
