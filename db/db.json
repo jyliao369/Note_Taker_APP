@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "title": "chores 1",
+        "text": "buy groceries",
+        "id": "798b"
+    },
+    {
+        "title": "chores 3",
+        "text": "wash the car",
+        "id": "51e9"
+    },
+    {
+        "title": "chore 4 ",
+        "text": "wash the laundry",
+        "id": "6d7e"
+    }
+]

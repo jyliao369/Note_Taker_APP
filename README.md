@@ -59,25 +59,32 @@
   https://github.com/jyliao369
 
 
+
   ## Demonstration
-  N/a
+  -- Simple Demonstration --
+  ![Simple Demo](./screenshots/Demo_(Note-Take).gif)
+
 
 
   ## Screenshots/Pictures
--- Basic Code for application --
-![Basic Code](./screenshots/screenshot1.jpg)
+  -- Basic Code for application --
+  ![Basic Code](./screenshots/screenshot1.jpg)
 
 
--- Application Running in Browser --
-![Application Running on Browser](./screenshots/screenshot2.jpg)
+  -- Application Running in Browser --
+  ![Application Running on Browser](./screenshots/screenshot2.jpg)
+
+
+  -- Final Application --
+  ![Final Application](./screenshots/screenshot3.jpg)
+
 
 
   ## Live Links
-
   Github Repo: https://github.com/jyliao369/Note_Taker_APP
 
-  Deployed Link:
+  Deployed Link: 
 
-  Heroku Live Link: 
+  Heroku Live Link: https://blooming-plateau-18611.herokuapp.com/notes
 
   
