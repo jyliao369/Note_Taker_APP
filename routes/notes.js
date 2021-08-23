@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuid(),
+            id: uuid(),
         };
 
         // This calls upon the function in the fsUtil.js to append and write the 
@@ -45,7 +45,7 @@ router.delete('/:id', (req, res) => {
     const {id} = req.params
     const notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
 
-    const noteIndex = notes.findIndex((note) => note.note_id === id);
+    const noteIndex = notes.findIndex((note) => note.id === id);
     notes.splice(noteIndex, 1);
     writeToFile("./db/db.json", notes);
   
