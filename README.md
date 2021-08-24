@@ -2,7 +2,7 @@
 
 
   ## Description:
-  The application allows users to write down notes for anything such as chores or appoitments or anything one could think of that requires reminding.
+  The application allows users to write down notes for anything such as chores or appoitments or anything one could think of that requires reminding. Users can make and store as many notes as they can. With the opition to delete made notes, you can make and delete as many as you want. Forget what you were suppose to do, this Note Taking app is the application for you.
 
 
   ## Table of Contents
@@ -45,7 +45,10 @@
   ## Tests
   -- How can we test the application --
 
-  The application node in visual studio can be used to test the app. once the file is loaded on the visual studios make sure that modules are installed through 'npm i'. You must have Express installed in order for this application to run properly. Also, make sure that the Node is installed to run the javascript files. Once ran through VS studio, a link will take you to the working application.
+  This application can be tested through visual code studios. 
+    -Before the file can be ran, make sure that Node and Express is installed. These can be installed by running 'npm install' or 'npm i' in the command line. 
+    -Once both are installed, run the application by running the server.js file in node in the command line in VS through 'node server.js'
+    -A link will generate which should take your to a application running on github
 
 
   ## Questions
@@ -83,7 +86,7 @@
   ## Live Links
   Github Repo: https://github.com/jyliao369/Note_Taker_APP
 
-  Deployed Link: 
+  Deployed Link: N/A
 
   Heroku Live Link: https://blooming-plateau-18611.herokuapp.com/notes
 

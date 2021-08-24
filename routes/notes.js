@@ -17,8 +17,9 @@ router.post('/', (req, res) => {
     // This if statement checks to see if any value for title or text and if there is
     // a new note is created based on the title and text input in the db.json
     // and a random id is given
+    // the three different values will be the notes title, the notes content, and a randomly
+    // generated id that will be used to identify the note.
 
-    // Else nothing is done
     if (title && text) {
         const newNote = {
             title,
@@ -35,12 +36,14 @@ router.post('/', (req, res) => {
             body: newNote,
         };
         res.json(response);
+
+    // Else nothing is done
     } else {
         res.json('Error in posting feedback');
     }
 });
 
-// This will delete any note saved
+// This will delete any note saved based on the randomly generated ID given when the note was created.
 router.delete('/:id', (req, res) => {
     const {id} = req.params
     const notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
